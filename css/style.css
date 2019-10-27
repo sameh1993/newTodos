@@ -1,0 +1,133 @@
+/** start global rules **/
+body {
+  padding: 0;
+  margin: 0; }
+
+* {
+  font-family: "Montserrat", sans-serif; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+/** end global rules **/
+/*** start app todos ***/
+#myapp {
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  background-image: url("../images/HNCK9012.jpg");
+  background-size: cover; }
+  #myapp .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    overflow: hidden; }
+  #myapp h3 {
+    text-transform: uppercase;
+    font-size: 35px;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #eee;
+    font-family: "Montserrat", sans-serif;
+    padding-top: 30px; }
+  #myapp .todos {
+    width: 45%;
+    margin: 50px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px; }
+    #myapp .todos .addNew {
+      border-bottom: 1px solid rgba(243, 243, 243, 0.5);
+      position: relative;
+      padding: 15px 0; }
+      #myapp .todos .addNew .newto {
+        padding: 13px 15px;
+        margin-left: 47px;
+        display: block;
+        width: 91%;
+        border: 0;
+        background-color: transparent;
+        font-size: 20px;
+        color: #fff;
+        outline: 0;
+        text-transform: capitalize; }
+        #myapp .todos .addNew .newto::placeholder {
+          color: #ccc;
+          letter-spacing: 2px; }
+      #myapp .todos .addNew input[type='checkbox'] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 30px; }
+    #myapp .todos .todolist {
+      padding: 20ppx; }
+      #myapp .todos .todolist input {
+        transform: scale(1.1);
+        margin-right: 18px; }
+      #myapp .todos .todolist .parent {
+        position: relative; }
+        #myapp .todos .todolist .parent .style {
+          position: absolute;
+          right: 0;
+          top: 10px;
+          bottom: 10px;
+          left: 70px;
+          display: none;
+          background-color: #333;
+          width: 80%;
+          outline: 0;
+          border: 0;
+          color: #fff;
+          padding: 10px; }
+        #myapp .todos .todolist .parent .show {
+          display: block; }
+      #myapp .todos .todolist li {
+        padding: 20px 15px;
+        text-transform: capitalize;
+        font-size: 17px;
+        color: #fff;
+        position: relative;
+        border-bottom: 1px solid rgba(243, 243, 243, 0.3);
+        margin: 0 17px; }
+        #myapp .todos .todolist li i {
+          position: absolute;
+          right: 15px;
+          top: 23%;
+          padding: 7px;
+          background-color: #b6b6b6;
+          border-radius: 50%;
+          font-size: 13px;
+          color: #222; }
+      #myapp .todos .todolist .finished {
+        text-decoration: line-through;
+        color: #b6b6b6; }
+    #myapp .todos .filter {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 25px;
+      color: #fff;
+      text-transform: capitalize;
+      font-weight: 600; }
+      #myapp .todos .filter .format {
+        line-height: 1.8;
+        color: #dcdcdc;
+        font-weight: normal;
+        font-size: 14px; }
+      #myapp .todos .filter button {
+        padding: 8px 12px;
+        background-color: #e2e0e0;
+        border-radius: 4px;
+        border: 0;
+        color: #222;
+        margin-left: 3px;
+        text-transform: capitalize;
+        font-weight: 600; }
+
+/*** end app todos ***/
+
+/*# sourceMappingURL=style.css.map */
+×
+Drag and Drop
+The image will be downloaded

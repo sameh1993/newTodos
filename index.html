@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Todos MVC</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- start links for google fonts files -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="short icon" href="images/HNCK9012.jpg" />
+</head>
+
+<body>
+    <div id="myapp">
+        <div class="overlay">
+            <h3>{{name}}</h3>
+            <div class="todos">
+                <div class="addNew">
+                    <input type="checkbox" v-model="myCheck" />
+                    <input type="text" class="newto" @keyup.enter="clickAdd()" placeholder="what needs to do" v-model='newTodo' /> </div>
+                <keep-alive>
+                    <ul class="todolist">
+                        <li v-for="(item, index) in filterTodoList" @dblclick="show(index)" class="parent" :class="item.todoCuse ? 'finished' : ''">
+                            <div class="content">
+                                <input type="checkbox" v-model='item.todoCuse' /> {{item.todo}} <i class="fa fa-close" @click="deleteTodo(item)"></i> </div>
+                            <input type="text" @keyup.enter="editTodo($event), item" class="style" v-model="item.todo" />
+                        </li>
+                    </ul>
+                </keep-alive>
+                <div class="filter">
+
+                    <div class="mid">
+                        <button @click="visibility='all'">All</button>
+                        <button @click="visibility='active'">active</button>
+                        <button @click="visibility='complated'">complated</button>
+                    </div>
+                    <div>
+                        <button @click="removeComp()">clear complated</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var myLocal = {
+            get: function() {
+                'use strict';
+                var todosList = JSON.parse(localStorage.getItem('todosList'));
+                return todosList;
+            },
+            save: function(todosList) {
+                "use strict";
+                localStorage.setItem("todosList", JSON.stringify(todosList));
+            }
+        }
+        new Vue({
+            el: '#myapp',
+            data: {
+                name: 'Todos',
+                todosList: [{
+                    todo: 'task 1',
+                    todoCuse: true
+                }, {
+                    todo: 'task 2',
+                    todoCuse: false
+                }, {
+                    todo: 'task 3',
+                    todoCuse: true
+                }, {
+                    todo: 'task 4',
+                    todoCuse: false
+                }, ],
+                newTodo: '',
+                visibility: 'all',
+            },
+            methods: {
+                deleteTodo: function(item) {
+                    this.todosList.splice(this.todosList.indexOf(item), 1)
+                },
+                clickAdd: function() {
+                    if (this.newTodo === '') {
+                        return;
+                    }
+                    this.todosList.push({
+                        todo: this.newTodo,
+                        todoCuse: false
+                    })
+                    this.newTodo = ""
+                },
+                removeComp: function(filterTodoList) {
+                    this.todosList = this.todosList.filter(function(item) {
+                        return !item.todoCuse;
+                    })
+                },
+                editTodo: function($event, item) {
+                    $event.target.style.display = 'none';
+                    item.todoCuse == true;
+                },
+                show: function(index) {
+                    var myinput = document.getElementsByClassName('style');
+                    myinput[index].style.display = 'block';
+                }
+            },
+            computed: {
+                filterTodoList: function() {
+                    if (this.visibility === "all") {
+                        return this.todosList;
+                    } else if (this.visibility === 'active') {
+                        return this.todosList.filter(function(item) {
+                            return !item.todoCuse;
+                        })
+                        console.log("welcome" + this.visibility);
+                    } else if (this.visibility === 'complated') {
+                        return this.todosList.filter(function(item) {
+                            return item.todoCuse;
+                        })
+                        console.log('welcome' + " " + this.visibility);
+                    }
+                },
+                numComplated: function() {
+                    return this.todosList.filter(function(item) {
+                        return !item.todoCuse;
+                    }).length
+                },
+                myCheck: {
+                    get: function() {
+                        return this.numComplated === 0;
+                    },
+                    set: function(value) {
+                        return this.todosList.forEach(function(item) {
+                            return item.todoCuse = value;
+                        })
+                    }
+                },
+            }
+
+            ,
+            watch: {
+                todosList: {
+                    handler: function(todosList) {
+                        myLocal.save(todosList);
+                        console.log('sameh');
+                    },
+                    deep: true
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
