@@ -58,97 +58,99 @@
             }
         }
         new Vue({
-            el: '#myapp',
-            data: {
-                name: 'Todos',
-                todosList: [{
-                    todo: 'task 1',
-                    todoCuse: true
-                }, {
-                    todo: 'task 2',
-                    todoCuse: false
-                }, {
-                    todo: 'task 3',
-                    todoCuse: true
-                }, {
-                    todo: 'task 4',
-                    todoCuse: false
-                }, ],
-                newTodo: '',
-                visibility: 'all',
-            },
-            methods: {
-                deleteTodo: function(item) {
-                    this.todosList.splice(this.todosList.indexOf(item), 1)
-                },
-                clickAdd: function() {
-                    if (this.newTodo === '') {
-                        return;
-                    }
-                    this.todosList.push({
-                        todo: this.newTodo,
+                el: '#myapp',
+                data: {
+                    name: 'Todos',
+                    todosList: [{
+                        todo: 'task 1',
+                        todoCuse: true
+                    }, {
+                        todo: 'task 2',
                         todoCuse: false
-                    })
-                    this.newTodo = ""
+                    }, {
+                        todo: 'task 3',
+                        todoCuse: true
+                    }, {
+                        todo: 'task 4',
+                        todoCuse: false
+                    }, ],
+                    newTodo: '',
+                    visibility: 'all',
                 },
-                removeComp: function(filterTodoList) {
-                    this.todosList = this.todosList.filter(function(item) {
-                        return !item.todoCuse;
-                    })
-                },
-                editTodo: function($event, item) {
-                    $event.target.style.display = 'none';
-                    item.todoCuse == true;
-                },
-                show: function(index) {
-                    var myinput = document.getElementsByClassName('style');
-                    myinput[index].style.display = 'block';
-                }
-            },
-            computed: {
-                filterTodoList: function() {
-                    if (this.visibility === "all") {
-                        return this.todosList;
-                    } else if (this.visibility === 'active') {
-                        return this.todosList.filter(function(item) {
+                methods: {
+                    deleteTodo: function(item) {
+                        this.todosList.splice(this.todosList.indexOf(item), 1)
+                    },
+                    clickAdd: function() {
+                        if (this.newTodo === '') {
+                            return;
+                        }
+                        this.todosList.push({
+                            todo: this.newTodo,
+                            todoCuse: false
+                        })
+                        this.newTodo = ""
+                    },
+                    removeComp: function(filterTodoList) {
+                        this.todosList = this.todosList.filter(function(item) {
                             return !item.todoCuse;
                         })
-                        console.log("welcome" + this.visibility);
-                    } else if (this.visibility === 'complated') {
+                    },
+                    editTodo: function($event, item) {
+                        $event.target.style.display = 'none';
+                        item.todoCuse == true;
+                    },
+                    show: function(index) {
+                        var myinput = document.getElementsByClassName('style');
+                        myinput[index].style.display = 'block';
+                    }
+                },
+                computed: {
+                    filterTodoList: function() {
+                        if (this.visibility === "all") {
+                            return this.todosList;
+                        } else if (this.visibility === 'active') {
+                            return this.todosList.filter(function(item) {
+                                return !item.todoCuse;
+                            })
+                            console.log("welcome" + this.visibility);
+                        } else if (this.visibility === 'complated') {
+                            return this.todosList.filter(function(item) {
+                                return item.todoCuse;
+                            })
+                            console.log('welcome' + " " + this.visibility);
+                        }
+                    },
+                    numComplated: function() {
                         return this.todosList.filter(function(item) {
-                            return item.todoCuse;
-                        })
-                        console.log('welcome' + " " + this.visibility);
-                    }
-                },
-                numComplated: function() {
-                    return this.todosList.filter(function(item) {
-                        return !item.todoCuse;
-                    }).length
-                },
-                myCheck: {
-                    get: function() {
-                        return this.numComplated === 0;
+                            return !item.todoCuse;
+                        }).length
                     },
-                    set: function(value) {
-                        return this.todosList.forEach(function(item) {
-                            return item.todoCuse = value;
-                        })
-                    }
-                },
-            }
-
-            ,
-            watch: {
-                todosList: {
-                    handler: function(todosList) {
-                        myLocal.save(todosList);
-                        console.log('sameh');
+                    myCheck: {
+                        get: function() {
+                            return this.numComplated === 0;
+                        },
+                        set: function(value) {
+                            return this.todosList.forEach(function(item) {
+                                return item.todoCuse = value;
+                            })
+                        }
                     },
-                    deep: true
+                },
+                watch: {
+                    todosList: {
+                        handler: function(todosList) {
+                            myLocal.save(todosList);
+                            console.log('sameh');
+                        },
+                        deep: true
+                    }
                 }
-            }
-        })
+            })
+
+
+            <
+            !--الحمد لله الذى هدانا الى هذا-- >
 
     </script>
 </body>
